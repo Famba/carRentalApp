@@ -1,42 +1,53 @@
 package Services.Impl;
 
 import Domain.Car;
+import Domain.Category;
 import Repository.CarRepository;
-import Repository.Impl.CarRepositoryImpl;
 import Services.CarServices;
 
 /**
  * Created by Riyaad on 11/1/2017.
  */
+//needs fixing
+@Components
 public class CarServicesImpl implements CarServices
 {
-    private static CarServicesImpl service = null;
+    @Autowired
+    private CarRepository carRepository;
 
-    CarRepository repository = CarRepositoryImpl.getInstance();
 
-    public static CarServicesImpl getInstance(){
-        if(service == null)
-            service = new CarServicesImpl();
-        return service;
+    public Car create(Car car)
+    {
+        return carRepository.create(car);
     }
 
-    public Car create(Car createCar) {
-        return repository.create(createCar);
-    }
 
     public Car read(String id)
     {
-        return repository.read(id);
+        return carRepository.read(id);
     }
 
-    public Car update(Car updateCar) {
-        return repository.update(updateCar);
+
+    public Car update(Car car) {
+        return carRepository.update(car);
     }
+
 
     public void delete(String id)
     {
-        repository.delete(id);
-
+        carRepository.delete(id);
     }
 
+
+
+    public Iterable<Car> readAll()
+    {
+        return carRepository.readAll();
+    }
+
+
+    public Iterable<Car> findAllById(Category category) {
+
+        return carRepository.findAllById(category);
+    }
 }
