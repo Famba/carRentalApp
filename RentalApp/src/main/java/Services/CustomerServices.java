@@ -11,4 +11,6 @@ public interface CustomerServices
     Customer read(String id);
     Customer update(Customer carDetails);
     void delete(String id);
+    Iterable<Customer> findAll();//finds all
+    Customer availableEmail(String email);
 }
