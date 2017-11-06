@@ -1,115 +1,118 @@
 package Domain;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+
+
 
 @Entity
 public class Car implements Serializable
 {
-    private String carName;
-    private String carModel;
-    private String carRegNo;
-    private String carYear;
-    private boolean carAvailability;
-    private Car()
-    {
+    //Car
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    private String make;
+    private String model;
+    private int year;
+    private String numberPlate;
+    private boolean status;
+
+
+    @ManyToOne
+    private Category category;
+
+    private Car(){
 
     }
 
-    public Car(Builder builder)
-    {
-        this.carName=builder.carName;
-        this.carModel=builder.carModel;
-        this.carRegNo=builder.carRegNo;
-        this.carYear=builder.carYear;
-        this.carAvailability=builder.carAvailability;
+    public Car(Builder builder) {
+        this.id = builder.id;
+        this.make = builder.make;
+        this.model = builder.model;
+        this.year = builder.year;
+        this.numberPlate = builder.numberPlate;
+        this.category = builder.category;
+        this.status = builder.status;
     }
-    //Builder class
-    public static class Builder
-    {
 
-        @Id
-        @Column(name="carName")
-        @GeneratedValue
-        private String carName;
+    public static class Builder{
+        private long id;
+        private String make;
+        private String model;
+        private int year;
+        private String numberPlate;
+        private boolean status;
+        private Category category;
 
-        @Column(name="carModel")
-        private String carModel;
-
-        @Column(name="carRegNo",unique = false)
-        private String carRegNo;
-
-        @Column(name="carYear")
-        private String carYear;
-
-        @Column(name="carAvailability")
-        private Boolean carAvailability;
-
-
-        public Builder carName(String value)
+        public Builder id(long value)
         {
-            this.carName = value;
+            this.id = value;
             return this;
         }
-
-        public Builder carModel(String value)
+        public Builder make(String value)
         {
-            this.carModel = value;
+            this.make = value;
             return this;
         }
-        public Builder carRegNo(String value)
+        public Builder model(String value)
         {
-            this.carRegNo = value;
+            this.model = value;
             return this;
         }
-
-        public Builder carYear(String value)
+        public Builder year(int value)
         {
-            this.carYear=value;
+            this.year = value;
             return this;
-
         }
-
-        public Builder carAvailability(Boolean value)
+        public Builder numberPlate(String value)
         {
-            this.carAvailability=value;
+            this.numberPlate = value;
             return this;
-
         }
-
+        public Builder status(boolean value)
+        {
+            this.status = value;
+            return this;
+        }
+        public Builder category(Category value)
+        {
+            this.category = value;
+            return this;
+        }
         public Car build()
-
         {
             return new Car(this);
         }
     }
-    //end Builder class
 
-    public String getCarName()
-
-    {
-        return carName;
+    public long getId() {
+        return id;
     }
 
-    public String getcarModel()
-    {
-        return carModel;
+    public String getMake() {
+        return make;
     }
 
-    public  String getCarRegNo()
-    {
-        return carRegNo;
+    public String getModel() {
+        return model;
     }
 
-    public String getCarYear()
-    {
-        return carYear;
+    public int getYear() {
+        return year;
     }
 
+    public String getNumberPlate() {
+        return numberPlate;
+    }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -118,18 +121,11 @@ public class Car implements Serializable
 
         Car car = (Car) o;
 
-        return carRegNo.equals(car.carRegNo);
+        return id == car.id;
     }
 
     @Override
-    public int hashCode()
-
-    {
-        return carRegNo.hashCode();
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
     }
-
-
-
-
-
 }
