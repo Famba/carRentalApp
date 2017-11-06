@@ -1,6 +1,7 @@
 package Factories;
 
 import Domain.Car;
+import Domain.Category;
 
 import java.util.Map;
 
@@ -9,14 +10,18 @@ import java.util.Map;
  */
 public class CarFactory
 {
-    public static Car getCarDetails(Map<String, String> values, String carReg,Boolean avail)
+    //CarFactory
+    public static Car getCar(Category category, Map<String, String> stringValues, int year, boolean status)
     {
-        Car car1 = new Car.Builder()
-                .carName(values.get("carName"))
-                .carModel(values.get("carModel"))
-                .carRegNo(carReg)
-                .carYear(values.get("carYear")).carAvailability(avail).build();
-        return car1;
+        Car car = new Car.Builder()
+                .make(stringValues.get("make"))
+                .model(stringValues.get("model"))
+                .numberPlate(stringValues.get("numberPlate"))
+                .status(status)
+                .year(year)
+                .category(category)
+                .build();
+        return car;
     }
 
 
