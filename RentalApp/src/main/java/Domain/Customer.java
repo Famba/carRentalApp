@@ -1,146 +1,92 @@
-package Domain;
+package com.vehicleRental.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
+/**
+ * Created by Noor on 27/10/2017.
+ */
 @Entity
-public class Customer implements Serializable {
+public class Customer implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long custId;
-    private String custName,custSurname,custEmail;
-    private int custNo;
-    private String custCity;
-    private String custProvince;
-    private int custpCode;
-    private String flatNo;
-    private String custStreet;
+    private long id;
+    private String name,surname,email, address;
 
 
-    private Customer()
-    {
+    private Customer(){
     }
 
-    public long getcustId()
-    {
-        return custId;
+    public long getId() {
+        return id;
     }
 
-    public String getcustName() {
-        return custName;
+    public String getName() {
+        return name;
     }
 
-    public String getcustSurname() {
-        return custSurname;
+    public String getSurname() {
+        return surname;
     }
 
-    public String getcustEmail() {
-        return custEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public int getcustNo() {
-        return custNo;
+    public String getAddress() {
+        return address;
     }
 
-    public String getcustCity() {
-        return custCity;
-    }
-
-    public String getcustProvince() {
-        return custProvince;
-    }
-
-    public int getcustpCode() {
-        return custpCode;
-    }
-
-    public String getflatNo() {
-        return flatNo;
-    }
-
-    public String getcustStreet() {
-        return custStreet;
-    }
 
     public Customer(Builder builder)
     {
-        this.custId = builder.custId;
-        this.custName = builder.custName;
-        this.custSurname = builder.custSurname;
-        this.custEmail=builder.custEmail;
-        this.custNo = builder.custNo;
-        this.custCity = builder.custCity;
-        this.custProvince = builder.custProvince;
-        this.custpCode = builder.custpCode;
-        this.flatNo = builder.flatNo;
-        this.custStreet = builder.custStreet;
+        this.id = builder.id;
+        this.name = builder.name;
+        this.surname = builder.surname;
+        this.email=builder.email;
+        this.address = builder.address;
         //this.invoices = builder.invoices;
     }
 
     public static class Builder{
-        private long custId;
-        private String custName,custSurname,custEmail;
-        private int custNo;
-        private String custCity;
-        private String custProvince;
-        private int custpCode;
-        private String flatNo;
-        private String custStreet;
+        private long id;
+        private String name,surname,email, address;
+       // private List<Invoices> invoices;
 
-        public Builder custNo(int value)
+//        public Builder invoices (List<Invoices> value)
+//        {
+//            this.invoices = value;
+//            return this;
+//        }
+
+        public Builder address(String value)
         {
-            this.custNo = value;
+            this.address = value;
             return this;
         }
-        public Builder custCity(String value)
+        public Builder id(Long value)
         {
-            this.custCity = value;
-            return this;
-        }
-        public Builder custProvince(String value)
-        {
-            this.custProvince = value;
-            return this;
-        }
-        public Builder custpCode(int value)
-        {
-            this.custpCode = value;
-            return this;
-        }
-        public Builder flatNo(String value)
-        {
-            this.flatNo = value;
-            return this;
-        }
-        public Builder custStreet(String value)
-        {
-            this.custStreet = value;
-            return this;
-        }
-        public Builder custId(Long value)
-        {
-            this.custId = value;
+            this.id = value;
             return this;
         }
 
-        public Builder custName(String value)
+        public Builder name(String value)
         {
-            this.custName = value;
+            this.name = value;
             return this;
         }
 
-        public Builder custSurname(String value)
+        public Builder surname(String value)
         {
-            this.custSurname = value;
+            this.surname = value;
             return this;
         }
 
-        public Builder custEmail(String value)
+        public Builder email(String value)
         {
-            this.custEmail=value;
+            this.email=value;
             return this;
         }
 
@@ -156,12 +102,12 @@ public class Customer implements Serializable {
 
             Customer customer = (Customer) o;
 
-            return custId == customer.custId;
+            return id == customer.id;
         }
 
         @Override
         public int hashCode() {
-            return (int) (custId ^ (custId >>> 32));
+            return (int) (id ^ (id >>> 32));
         }
 
     }
