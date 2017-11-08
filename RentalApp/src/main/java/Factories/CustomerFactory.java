@@ -9,22 +9,15 @@ import java.util.Map;
  */
 public class CustomerFactory
 {
-
-    //Customer Factory
-    public static Customer getCustomer(Map<String, String> stringValues, Map<String,Integer> intValues)
+    public static Customer getCustomer(Map<String, String> stringValues)
     {
-        Customer cust = new Customer.Builder()
-                .custName(stringValues.get("name"))
-                .custSurname(stringValues.get("surname"))
-                .custEmail(stringValues.get("email"))
-                .custCity(stringValues.get("city"))
-                .custProvince(stringValues.get("province"))
-                .flatNo(stringValues.get("Flat number"))
-                .custStreet(stringValues.get("street"))
-                .custNo(intValues.get("ID"))
-                .custpCode(intValues.get("postal code"))
-                //.invoices(invoices)
+        Customer customer = new Customer.Builder()
+                .name(stringValues.get("name"))
+                .surname(stringValues.get("surname"))
+                .email(stringValues.get("email"))
+                .address(stringValues.get("address"))
                 .build();
-        return cust;
+        return customer;
     }
+
 }
