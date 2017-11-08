@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Noor on 27/10/2017.
+ * Created by Riyaad on 27/10/2017.
  */
 @Entity
 public class Customer implements Serializable{
